@@ -1,40 +1,50 @@
 <?php 
 class Categorie{
     // `categoryID`, `categoryName:
-    private $categoryID;
-    private $categoryName;
+    private $idCat;
+    private $nameCat;
     public function __construct(){
         
     }
 
+   
+
     /**
-     * Get the value of categoryID
+     * Get the value of idCat
      */ 
-    public function getCategoryID()
+    public function getIdCat()
     {
-        return $this->categoryID;
+        return $this->idCat;
     }
 
-  
-    public function setCategoryID($categoryID)
+    /**
+     * Set the value of idCat
+     *
+     * @return  self
+     */ 
+    public function setIdCat($idCat)
     {
-        $this->categoryID = $categoryID;
+        $this->idCat = $idCat;
 
         return $this;
     }
 
     /**
-     * Get the value of categoryName
+     * Get the value of nameCat
      */ 
-    public function getCategoryName()
+    public function getNameCat()
     {
-        return $this->categoryName;
+        return $this->nameCat;
     }
 
-  
-    public function setCategoryName($categoryName)
+    /**
+     * Set the value of nameCat
+     *
+     * @return  self
+     */ 
+    public function setNameCat($nameCat)
     {
-        $this->categoryName = $categoryName;
+        $this->nameCat = $nameCat;
 
         return $this;
     }

@@ -20,8 +20,8 @@ class CategorieDao
             $categorie = array();
             foreach ($res as $obj) {
                 $category = new Categorie();
-                $category->setCategoryID($obj->categoryID);
-                $category->setCategoryName($obj->categoryName);
+                $category->setIdCat($obj->idCat);
+                $category->setNameCat($obj->nameCat);
                 array_push($categorie, $category);
             }
             return $categorie;
@@ -36,11 +36,12 @@ class CategorieDao
     public function InsertCategorie(Categorie $categorie)
     {
         try {
-            $categorie_name = $categorie->getCategoryName();
-            $req = "INSERT INTO categorie(categoryName) VALUES (:name)";
+            $categorie_name = $categorie->getNameCat();
+            $req = "INSERT INTO categorie(nameCat) VALUES (:name)";
             $this->db->query($req);
             $this->db->bind(':name', $categorie_name);
-            $this->db->execute();
+           $ress= $this->db->execute();
+           var_dump($ress);
         } catch (Exception $e) {
             // Handle the exception
             error_log("Error in Insert: " . $e->getMessage());
@@ -48,13 +49,13 @@ class CategorieDao
         }
 
     }
-    // Update 
+    // // Update 
     public function UpdateCategorie(Categorie $categorie)
     {
         try {
-            $categorie_id=$categorie->getCategoryID();
-            $categorie_name=$categorie->getCategoryName();
-            $req = "UPDATE categorie SET categoryName=:name WHERE categoryID= :id";
+            $categorie_id=$categorie->getIdCat();
+            $categorie_name=$categorie->getNameCat();
+            $req = "UPDATE categorie SET nameCat=:name WHERE idCat= :id";
             $this->db->query($req);
             $this->db->bind(":id", $categorie_id);
             $this->db->bind(":name", $categorie_name);
@@ -65,12 +66,12 @@ class CategorieDao
 
         }
     }
-    // delete
+    // // delete
     public function DelletCategorie(Categorie $categorie)
     {
         try {
-            $categorie_id=$categorie->getCategoryID();
-            $req = "DELETE FROM `categorie` WHERE categoryID= :id";
+            $categorie_id=$categorie->getIdCat();
+            $req = "DELETE FROM `categorie` WHERE idCat= :id";
             $this->db->query($req);
             $this->db->bind(":id", $categorie_id);
             $this->db->execute();

@@ -23,7 +23,7 @@ class Core
         // Unset 0 index
         unset($url[0]);
       } else {
-        $this->currentController = 'Controller404';
+        // $this->currentController = 'Controller404';
       }
     }
 

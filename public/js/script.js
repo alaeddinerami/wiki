@@ -1,34 +1,44 @@
+const btnEdit = document.querySelectorAll("#btnEdit");
 
-let editedCategoryId;
+btnEdit.forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    const tr = this.closest("tr");
 
-function editCategory() {
-   const categoryCell = document.getElementById('categoryCell');
-   const editedCategory = document.getElementById('editedCategory');
+    const categoryCell = tr.querySelector("#categoryCell");
+    const editedCategory = document.getElementById("editedCategory");
 
-   editedCategory.value = categoryCell.innerText;
-   editedCategoryId = categoryCell.getAttribute('data-key'); // If you have an ID associated with the category, store it here
-   document.querySelector('.id').value = editedCategoryId;
-   document.getElementById('editModal').classList.remove('hidden');
-}
+    editedCategory.value = categoryCell.innerText;
+    let EditValue = e.target.value;
 
-function saveEdit() {
-   const editedCategory = document.getElementById('editedCategory').value;
-   // Perform the update operation here using JavaScript or send it to the server
-   // You can use editedCategoryId to identify the category
+    document.querySelector("#idCat").value = EditValue;
+    document.getElementById("editModal").classList.remove("hidden");
+  });
+});
+// function editCategory(e) {
+//   console.log(e.target);
 
-   // Close the modal
-   closeEditModal();
-}
+//   // // editedCategoryId = categoryCell.getAttribute('data-key'); // If you have an ID associated with the category, store it here
+//   // document.querySelector('#idCat').value = idCat;
+// }
+
+// function saveEdit() {
+//   const editedCategory = document.querySelector("#idCat").value;
+//   // Perform the update operation here using JavaScript or send it to the server
+//   // You can use editedCategoryId to identify the category
+
+//   // Close the modal
+//   // document.getElementById('editModal').classList.add('hidden');
+// }
 
 function closeEditModal() {
-   document.getElementById('editModal').classList.add('hidden');
+  document.getElementById("editModal").classList.add("hidden");
 }
 
-function deleteCategory() {
-   // Perform the delete operation here using JavaScript or send it to the server
-}
+// function deleteCategory() {
+//    // Perform the delete operation here using JavaScript or send it to the server
+// }
 
-function showWarning() {
-   // Display a warning message (replace alert with a more sophisticated solution)
-   alert("Editing categories is not allowed in this demo!");
-}
+// function showWarning() {
+//    // Display a warning message (replace alert with a more sophisticated solution)
+//    alert("Editing categories is not allowed in this demo!");
+// }

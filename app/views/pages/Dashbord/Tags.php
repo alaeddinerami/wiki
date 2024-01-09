@@ -1,135 +1,99 @@
-<?php
-require APPROOT . '/views/inc/header.php'; 
+<?php require_once APPROOT . '/views/inc/header.php' ?>
 
- ?>
-<main class="mt-5 pt-3">
-    <div class="main mt-2">
+<div>
+
+    <!-- Header -->
+
+    <!-- ./Header -->
+
+    <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
+
+        <!-- Statistics Cards -->
+      
+        <!-- ./Statistics Cards -->
 
 
-        <!--=========================Modal====================-->
+        <form method="post" action="<?= URLROOT ?> /AdminController/InsertTags" class="max-w-sm mx-auto">
+            <div class="mb-5">
+                <label for="tags" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Add new tag</label>
+                <input type="text" id="tags" name="tags" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="new tag" required>
+            </div>
+            <button type="submit" name="add_tags" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ADD</button>
+        </form>
 
-        <div class="button-add-student float-end me-4">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                data-bs-whatever="@mdo">Add Tags</button>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Tags</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST" action="<?= URLROOT ?>/DashbordControler/AddGenre"
-                                enctype="multipart/form-data">
-                                <div class="mb-3">
-                                    <label for="Genre" class="col-form-label">Tags:</label>
-                                    <input type="text" class="form-control" name="Genre" required>
+        <!-- Client Table -->
+        <div class="mt-4 mx-4">
+            <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                <div class="w-full overflow-x-auto">
+                    <div class="w-full">
+                        <table class="w-full">
+                            <thead>
+                                <h2>All Tags</h2>
+                                <tr class="text-xs font-semibold tracking-wide  text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 text-center">
+                                    <th class="px-4 py-3">ID</th>
+                                    <th class="px-4 py-3">Nom</th>
+                                    <!-- <th class="px-4 py-3">Wikis</th> -->
+                                    <th class="px-4 py-3">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                <?php
+
+                                foreach ($data['Tags'] as $tags) {
+                                ?>
+
+                                <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400 text-center">
+                                    <td data-key="10" class="px-4 py-3" id="categoryCellt">
+                                         
+                                      <?= $tags->getIdTag() ?>
+                                          
+                                    </td>
+                                    <td data-key="10" class="px-4 py-3" id="categoryCell">
+                                    
+                                    <?= $tags->getNameTag() ?>
+                                    
+                                    </td>
+                                    <!-- <td data-key="10" class="px-4 py-3" id="categoryCellt">
+                                        5
+                                    </td> -->
+                                    <td class="px-4 py-3">
+                                        <!-- Edit button -->
+                                        <button class="text-blue-500 hover:underline" onclick="editCategory()">Edit</button>
+                                        <!-- Delete button -->
+                                        <a href="<?= URLROOT ?>/AdminController/DelletTag?id=<?= $tags->getIdTag() ?>" class="text-red-500 hover:underline ml-2">Delete</a>
+                                        <!-- onclick="deleteCategory()" -->
+                                    </td>
+                                </tr>
+
+                                <?php
+                                }
+
+                                ?>
+
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
+
+                        <!-- Modal for Edit Category -->
+                        <div id="editModal" class="hidden fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50">
+                            <div class="flex items-center justify-center h-full">
+                                <div class="bg-white p-8 rounded shadow-lg">
+                                    <form action="" method="POST">
+                                        <label for="editedtag">Edit Category:</label>
+                                        <input type="text" name="tagId" class="id" hidden>
+                                        <input type="text" id="edited_tag" name="tag_name" class="w-full border rounded px-3 py-2 mt-2 mb-4">
+                                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded" onclick="saveEdit()">Save</button>
+                                        <button class="bg-gray-500 text-white px-4 py-2 rounded ml-2" onclick="closeEditModal()">Cancel</button>
+                                    </form>
+
                                 </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" name="submit" class="btn btn-primary">Add Tags</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- ================ Order Details List ================= -->
-        <div class="lyrics">
-            <div class="recentOrders">
-                <div class="cardHeader ms-2">
-                    <h2>Tags</h2>
-                    <!-- <a href="#" class="btn">View All</a> -->
-                </div>
+        <!--  -->
 
-                <div class="row">
-                    <div class="col-md-12 mb-3">
-                        <div class="card">
-                            <div class="card-header">
-                                <span><i class="bi bi-table me-2"></i></span> Data Tags
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="example" class="table table-striped data-table" style="width: 100%">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Name_Tags</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td>Shad Decker</td>
-                                                <td>Regional Director</td>
-
-                                                <td>
-                                                    <a class="update-btn" type="button" data-bs-toggle="modal"
-                                                        data-bs-target="#updateGenreModal" data-bs-whatever="@mdo">
-                                                        <i class="btn btn-primary far fa-pen"></i>
-                                                    </a>
-
-                                                    <a href=""><i class="btn btn-danger far fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ================= New modal  ================ -->
-            <div class="button-add-student float-end me-4">
-
-
-                <div class="modal fade" id="updateGenreModal" tabindex="-1" aria-labelledby="updateGenreModalModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="updateGenreModalModalLabel">Upadte Tags</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form method="POST" action="<?= URLROOT ?>/DashbordControler/UpdateTags"
-                                    enctype="multipart/form-data">
-                                    <div class="mb-3">
-                                        <label for="genre" class="col-form-label">Tags:</label>
-                                        <input id="id" type="hidden" class="form-control" name="id">
-                                        <input id="Tags" type="text" class="form-control" name="Tags">
-                                    </div>
-
-
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" name="updategenre" class="btn btn-primary">Update
-                                            Tags</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-</main>
-<?php
-
-require APPROOT . '/views/inc/footer.php'; 
-?>
+        <?php require_once APPROOT . '/views/inc/footer.php' ?>
