@@ -13,13 +13,7 @@
         <!-- ./Statistics Cards -->
 
 
-        <form method="post" action="<?= URLROOT ?> /AdminController/InsertTags" class="max-w-sm mx-auto">
-            <div class="mb-5">
-                <label for="tags" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Add new tag</label>
-                <input type="text" id="tags" name="tags" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="new tag" required>
-            </div>
-            <button type="submit" name="add_tags" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ADD</button>
-        </form>
+        
 
 
         <!-- Client Table -->
@@ -34,7 +28,7 @@
                                     <th class="px-4 py-3">ID</th>
                                     <th class="px-4 py-3">Nom</th>
                                     <th class="px-4 py-3">description</th>
-                                    <th class="px-4 py-3">Actions</th>
+                                    <th class="px-4 py-3">Archiver</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -59,7 +53,27 @@
                                         <td data-key="10" class="px-4 py-3" id="categoryCellt">
                                             <?= $wiki->getDescriptionWiki() ?>
                                         </td>
-                                        
+                                        <td data-key="10" class="px-4 py-3" id="categoryCellt">
+                                            <?php var_dump($wiki->getArchivedWiki());
+                                            
+                                             if ($wiki->getArchivedWiki() == 0) { ?>
+                                               <form action="<?= URLROOT ?> /AdminController/Archiver" method="post">
+                                                <button type="submit" name="archiver" value="<?= $wiki->getIdWiki() ?>" class="text-green-700 border border-green-700 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+                                                    <svg class="w-13 h-7" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"></path>
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                            <?php } else { ?>
+                                                <form action="<?= URLROOT ?> /AdminController/NomArchiver" method="post">
+                                                <button type="submit" name="non_archiver" value="<?= $wiki->getIdWiki() ?>" class="text-red-700 border border-red-700 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+                                                    <svg class="w-13 h-7" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m6 4.125 2.25 2.25m0 0 2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"></path>
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                            <?php } ?>
+                                        </td>
                                     </tr>
 
                                 <?php

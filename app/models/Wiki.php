@@ -3,6 +3,8 @@ class Wiki{
     private $idWiki;
     private $nameWiki;
     private $descriptionWiki;
+    private $archivedWiki;
+
 
     public function __construct(){
         
@@ -64,6 +66,28 @@ class Wiki{
     public function setDescriptionWiki($descriptionWiki)
     {
         $this->descriptionWiki = $descriptionWiki;
+
+        return $this;
+    }
+
+
+
+    /**
+     * Get the value of archivedWiki
+     */ 
+    public function getArchivedWiki()
+    {
+        return $this->archivedWiki;
+    }
+
+    /**
+     * Set the value of archivedWiki
+     *
+     * @return  self
+     */ 
+    public function setArchivedWiki($archivedWiki)
+    {
+        $this->archivedWiki = $archivedWiki;
 
         return $this;
     }

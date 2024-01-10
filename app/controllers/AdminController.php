@@ -6,19 +6,30 @@ class AdminController extends Controller
   private $tags;
 
   private $wiki;
+
+  private $author;
   public function __construct()
   {
     // $this->adminDao =$this->model('AdminDao');
     $this->categoy = $this->model('CategorieDao');
     $this->tags = $this->model('TagsDao');
     $this->wiki = $this->model('WikiDao');
+    $this->author = $this->model('AuthorDao');
   }
 
   public function index()
   {
     $data = [
       'title' => 'wiki',
+      'Users' => $this->author->DisplayAllUser(),
+      'Wikis' => $this->author->DisplayAllwikis(),
+      'Categories' => $this->author->DisplayAllCategorie(),
+      'Tags' => $this->author->DisplayAllTags()
+      
+      
     ];
+    // var_dump($data);
+    // die;
 
     $this->view('pages/Dashbord/Dashbord', $data);
   }
@@ -31,6 +42,17 @@ class AdminController extends Controller
 
     $this->view('pages/Dashbord/Dashbord', $data);
   }
+  //......................................Users
+//   public function Users()
+//   {
+//     $data = [
+//       'title' => 'Users',
+//       'Users' => $this->author->DisplayAllUser()
+//     ];
+// var_dump($data);
+// die;
+//     $this->view('pages/Dashbord/Dashbord', $data);
+//   }
   // -----------------------------------Categorie
   public function Categorie()
   {
@@ -49,8 +71,7 @@ class AdminController extends Controller
       'title' => 'Tags',
       'Tags' => $this->tags->getAllTags()
     ];
-    // var_dump($data);
-    // die;
+    
 
     $this->view('pages/Dashbord/Tags', $data);
   }
@@ -136,7 +157,23 @@ class AdminController extends Controller
       redirect('AdminController/Tags');
     }
   }
+  public function UpdateTag()
+  {
+    if (isset($_POST['Tagsname'])) {
+      var_dump($_POST);
 
+
+      $tag_id = $_POST['TagsId'];
+      $tags_name = $_POST['Tagsname'];
+      $tag = new Tags();
+      $tag->setIdTag($tag_id);
+      $tag->setNameTag($tags_name);
+      $this->tags->UpdateTagsDao($tag);
+      redirect('AdminController/Tags');
+    } else {
+      redirect('AdminController/Tags');
+    }
+  }
   public function DelletTag()
   {
     if (isset($_GET['id'])) {
@@ -147,6 +184,40 @@ class AdminController extends Controller
       redirect('AdminController/Tags');
     } else {
       redirect('AdminController/Tags');
+    }
+  }
+
+  public function Archiver()
+  {
+    if (isset($_POST['archiver'])) {
+    
+
+      $archiver = $_POST['archiver'];
+      $wiki = new wiki();
+
+      $wiki->setIdWiki($archiver);
+      $this->wiki->ArchiverDao($wiki);
+
+      redirect('AdminController/Wiki');
+    } else {
+      redirect('AdminController/Wiki');
+    }
+  }
+
+  public function NomArchiver()
+  {
+    if (isset($_POST['non_archiver'])) {
+    
+
+      $archiver = $_POST['non_archiver'];
+      $wiki = new wiki();
+
+      $wiki->setIdWiki($archiver);
+      $this->wiki->NonArchiverDao($wiki);
+
+      redirect('AdminController/Wiki');
+    } else {
+      redirect('AdminController/Wiki');
     }
   }
 }

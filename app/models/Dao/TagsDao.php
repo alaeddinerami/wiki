@@ -65,6 +65,25 @@ class TagsDao{
 
         }
     }
+
+     // // Update 
+     public function UpdateTagsDao(Tags $tags)
+     {
+         try {
+             $tag_id=$tags->getIdTag();
+             $tag_name=$tags->getNameTag();
+             $req = "UPDATE tags SET nameTag=:name WHERE idTag= :id";
+             $this->db->query($req);
+             $this->db->bind(":id", $tag_id);
+             $this->db->bind(":name", $tag_name);
+             $this->db->execute();
+         } catch (Exception $e) {
+             // Handle the exception
+             error_log("Error in update: " . $e->getMessage());
+ 
+         }
+     }
+
     /**
      * Get the value of tags
      */ 

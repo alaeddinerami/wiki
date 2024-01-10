@@ -9,7 +9,7 @@
     <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
 
         <!-- Statistics Cards -->
-      
+
         <!-- ./Statistics Cards -->
 
 
@@ -43,28 +43,28 @@
                                 foreach ($data['Tags'] as $tags) {
                                 ?>
 
-                                <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400 text-center">
-                                    <td data-key="10" class="px-4 py-3" id="categoryCellt">
-                                         
-                                      <?= $tags->getIdTag() ?>
-                                          
-                                    </td>
-                                    <td data-key="10" class="px-4 py-3" id="categoryCell">
-                                    
-                                    <?= $tags->getNameTag() ?>
-                                    
-                                    </td>
-                                    <!-- <td data-key="10" class="px-4 py-3" id="categoryCellt">
+                                    <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400 text-center">
+                                        <td data-key="10" class="px-4 py-3">
+
+                                            <?= $tags->getIdTag() ?>
+
+                                        </td>
+                                        <td data-key="10" class="px-4 py-3" id="tagCell">
+
+                                            <?= $tags->getNameTag() ?>
+
+                                        </td>
+                                        <!-- <td data-key="10" class="px-4 py-3" id="categoryCellt">
                                         5
                                     </td> -->
-                                    <td class="px-4 py-3">
-                                        <!-- Edit button -->
-                                        <button class="text-blue-500 hover:underline" onclick="editCategory()">Edit</button>
-                                        <!-- Delete button -->
-                                        <a href="<?= URLROOT ?>/AdminController/DelletTag?id=<?= $tags->getIdTag() ?>" class="text-red-500 hover:underline ml-2">Delete</a>
-                                        <!-- onclick="deleteCategory()" -->
-                                    </td>
-                                </tr>
+                                        <td class="px-4 py-3">
+                                            <!-- Edit button -->
+                                            <button type="button" value="<?= $tags->getIdTag() ?>" class="tagEditBtn text-blue-500 hover:underline">Edit</button>
+                                            <!-- Delete button -->
+                                            <a href="<?= URLROOT ?>/AdminController/DelletTag?id=<?= $tags->getIdTag() ?>" class="text-red-500 hover:underline ml-2">Delete</a>
+                                            <!-- onclick="deleteCategory()" -->
+                                        </td>
+                                    </tr>
 
                                 <?php
                                 }
@@ -79,21 +79,43 @@
                         <div id="editModal" class="hidden fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50">
                             <div class="flex items-center justify-center h-full">
                                 <div class="bg-white p-8 rounded shadow-lg">
-                                    <form action="" method="POST">
-                                        <label for="editedtag">Edit Category:</label>
-                                        <input type="text" name="tagId" class="id" hidden>
-                                        <input type="text" id="edited_tag" name="tag_name" class="w-full border rounded px-3 py-2 mt-2 mb-4">
-                                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded" onclick="saveEdit()">Save</button>
-                                        <button class="bg-gray-500 text-white px-4 py-2 rounded ml-2" onclick="closeEditModal()">Cancel</button>
+                                    <form action="<?= URLROOT ?> /AdminController/UpdateTag" method="POST">
+                                        <label for="editedTAg">Edit Tag:</label>
+                                        <input type="hidden" name="TagsId" id="idTag" value="">
+                                        <input type="text" id="editedTAg" name="Tagsname" class="w-full border rounded px-3 py-2 mt-2 mb-4">
+                                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+                                        <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded ml-2" onclick="closeEditModal()">Cancel</button>
                                     </form>
 
                                 </div>
                             </div>
                         </div>
+                        <!-- <div id="editModal" class="hidden fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50">
+                            <div class="flex items-center justify-center h-full">
+                                <div class="bg-white p-8 rounded shadow-lg">
+                                    <form action="" method="POST">
+                                        <label for="editedtag">Edit Category:</label>
+                                        <input type="text" name="tagId" class="id" hidden>
+                                        <input type="text" id="edited_tag" name="tag_name" class="w-full border rounded px-3 py-2 mt-2 mb-4">
+                                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded" onclick="saveEdit()">Save</button>
+                                        <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded ml-2" onclick="closeEditModal()">Cancel</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
         <!--  -->
 
+        <script>
+            function editCategory(e) {
+                console.log(e.target);
+
+                // // editedCategoryId = categoryCell.getAttribute('data-key'); // If you have an ID associated with the category, store it here
+                // document.querySelector('#idCat').value = idCat;
+            }
+        </script>
         <?php require_once APPROOT . '/views/inc/footer.php' ?>
