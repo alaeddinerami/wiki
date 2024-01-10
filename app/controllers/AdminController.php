@@ -7,24 +7,24 @@ class AdminController extends Controller
 
   private $wiki;
 
-  private $author;
+  private $admin;
   public function __construct()
   {
     // $this->adminDao =$this->model('AdminDao');
     $this->categoy = $this->model('CategorieDao');
     $this->tags = $this->model('TagsDao');
     $this->wiki = $this->model('WikiDao');
-    $this->author = $this->model('AuthorDao');
+    $this->admin = $this->model('AdminDao');
   }
 
   public function index()
   {
     $data = [
       'title' => 'wiki',
-      'Users' => $this->author->DisplayAllUser(),
-      'Wikis' => $this->author->DisplayAllwikis(),
-      'Categories' => $this->author->DisplayAllCategorie(),
-      'Tags' => $this->author->DisplayAllTags()
+      'Users' => $this->admin->DisplayAllUser(),
+      'Wikis' => $this->admin->DisplayAllwikis(),
+      'Categories' => $this->admin->DisplayAllCategorie(),
+      'Tags' => $this->admin->DisplayAllTags()
       
       
     ];
