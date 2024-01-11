@@ -19,14 +19,17 @@ class AdminController extends Controller
 
   public function index()
   {
+    if ($_SESSION['Error'] == 'user not found') {
+      redirect('UserController/LoginAuthor');
+    }
     $data = [
       'title' => 'wiki',
       'Users' => $this->admin->DisplayAllUser(),
       'Wikis' => $this->admin->DisplayAllwikis(),
       'Categories' => $this->admin->DisplayAllCategorie(),
       'Tags' => $this->admin->DisplayAllTags()
-      
-      
+
+
     ];
     // var_dump($data);
     // die;
@@ -34,8 +37,13 @@ class AdminController extends Controller
     $this->view('pages/Dashbord/Dashbord', $data);
   }
   // -----------------------------------Dashbord
+  
   public function Dashbord()
   {
+    
+    if ($_SESSION['Error'] == 'user not found') {
+      redirect('UserController/LoginAuthor');
+    }
     $data = [
       'title' => 'wiki',
     ];
@@ -43,19 +51,13 @@ class AdminController extends Controller
     $this->view('pages/Dashbord/Dashbord', $data);
   }
   //......................................Users
-//   public function Users()
-//   {
-//     $data = [
-//       'title' => 'Users',
-//       'Users' => $this->author->DisplayAllUser()
-//     ];
-// var_dump($data);
-// die;
-//     $this->view('pages/Dashbord/Dashbord', $data);
-//   }
+
   // -----------------------------------Categorie
   public function Categorie()
   {
+    if ($_SESSION['Error'] == 'user not found') {
+      redirect('UserController/LoginAuthor');
+    }
     $data = [
       'title' => 'Categorie',
       'Categorie' => $this->categoy->getAllCat()
@@ -67,17 +69,23 @@ class AdminController extends Controller
   // -----------------------------------Tags
   public function Tags()
   {
+    if ($_SESSION['Error'] == 'user not found') {
+      redirect('UserController/LoginAuthor');
+    }
     $data = [
       'title' => 'Tags',
       'Tags' => $this->tags->getAllTags()
     ];
-    
+
 
     $this->view('pages/Dashbord/Tags', $data);
   }
   // -----------------------------------Wiki
   public function Wiki()
   {
+    if ($_SESSION['Error'] == 'user not found') {
+      redirect('UserController/LoginAuthor');
+    }
     $data = [
       'title' => 'Wiki',
       'Wiki' => $this->wiki->getAllWikis()
@@ -92,6 +100,9 @@ class AdminController extends Controller
 
   public function InsertCategorie()
   {
+    if ($_SESSION['Error'] == 'user not found') {
+      redirect('UserController/LoginAuthor');
+    }
     if (isset($_POST['add_categorie'])) {
 
       $Categorie_name = $_POST['categorie'];
@@ -104,6 +115,9 @@ class AdminController extends Controller
   //Update Categorie
   public function UpdateCategorie()
   {
+    if ($_SESSION['Error'] == 'user not found') {
+      redirect('UserController/LoginAuthor');
+    }
     if (isset($_POST['categoryName'])) {
       var_dump($_POST);
 
@@ -123,6 +137,9 @@ class AdminController extends Controller
 
   public function DelletCategorie()
   {
+    if ($_SESSION['Error'] == 'user not found') {
+      redirect('UserController/LoginAuthor');
+    }
     if (isset($_GET['id'])) {
       $id = $_GET['id'];
       $idCategory = $this->categoy->getCategory()->setIdCat($id);
@@ -136,11 +153,9 @@ class AdminController extends Controller
   // ______________________Log Out----------------
   public function logout()
   {
-    $_SESSION['id_user'] = null;
-    $_SESSION['nom'] = null;
-    $_SESSION['email'] = null;
     session_destroy();
-    redirect('');
+    $_SESSION['Error'] = 'user not found';
+    redirect('UserController/LoginAuthor');
   }
 
   //.............................tags........................
@@ -148,6 +163,9 @@ class AdminController extends Controller
 
   public function Inserttags()
   {
+    if ($_SESSION['Error'] == 'user not found') {
+      redirect('UserController/LoginAuthor');
+    }
     if (isset($_POST['add_tags'])) {
 
       $Tags_name = $_POST['tags'];
@@ -159,6 +177,9 @@ class AdminController extends Controller
   }
   public function UpdateTag()
   {
+    if ($_SESSION['Error'] == 'user not found') {
+      redirect('UserController/LoginAuthor');
+    }
     if (isset($_POST['Tagsname'])) {
       var_dump($_POST);
 
@@ -176,6 +197,9 @@ class AdminController extends Controller
   }
   public function DelletTag()
   {
+    if ($_SESSION['Error'] == 'user no found') {
+      redirect('UserController/LoginAuthor');
+    }
     if (isset($_GET['id'])) {
       $id = $_GET['id'];
       $idTag = $this->tags->getTags()->setIdTag($id);
@@ -189,8 +213,11 @@ class AdminController extends Controller
 
   public function Archiver()
   {
+    if ($_SESSION['Error'] == 'user not found') {
+      redirect('UserController/LoginAuthor');
+    }
     if (isset($_POST['archiver'])) {
-    
+
 
       $archiver = $_POST['archiver'];
       $wiki = new wiki();
@@ -206,8 +233,11 @@ class AdminController extends Controller
 
   public function NomArchiver()
   {
+    if ($_SESSION['Error'] == 'user not found') {
+      redirect('UserController/LoginAuthor');
+    }
     if (isset($_POST['non_archiver'])) {
-    
+
 
       $archiver = $_POST['non_archiver'];
       $wiki = new wiki();

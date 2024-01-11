@@ -16,6 +16,9 @@
 </head>
 
 <body>
-    <?php if (!isset($noNavbar)){
+    <?php if (!isset($nosidebar)){
+        require_once APPROOT . '/views/inc/sidebar.php';
+    } ?>
+    <?php if (!isset($nonavbar)){
         require_once APPROOT . '/views/inc/navbar.php';
     } ?>

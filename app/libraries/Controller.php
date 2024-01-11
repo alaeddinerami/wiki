@@ -11,6 +11,14 @@
       // Instantiate model
       return new $model();
     }
+    
+    // Lets us load model from controllers
+    public function modelEntitie($model){
+      // Require model file
+      require_once '../app/models/' . $model . '.php';
+      // Instantiate model
+      return new $model();
+    }
 
     // Lets us load view from controllers
     public function view($url, $data = []){

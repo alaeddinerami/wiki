@@ -1,4 +1,6 @@
-<?php require_once APPROOT . '/views/inc/header.php' ?>
+<?php
+ $nonavbar=''; 
+require_once APPROOT . '/views/inc/header.php' ?>
 
 <div>
 
