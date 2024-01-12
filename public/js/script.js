@@ -72,3 +72,6 @@ function closeEditModal() {
 //   document.querySelector("#idCat").value = EditValue;
 //   document.getElementById("editModal").classList.remove("hidden");
 // }
+// document.getElementById('mobile-menu-button').addEventListener('click', function() {
+//   document.getElementById('mobile-menu').classList.toggle('hidden');
+// });

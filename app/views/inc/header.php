@@ -15,7 +15,7 @@
    <link rel="stylesheet" href="<?=URLROOT?>/css/style.css">
 </head>
 
-<body>
+<body class="bg-gray-100 p-3">
     <?php if (!isset($nosidebar)){
         require_once APPROOT . '/views/inc/sidebar.php';
     } ?>

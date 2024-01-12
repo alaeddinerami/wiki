@@ -117,4 +117,12 @@ class UserController extends Controller
   ];
     $this->view('pages/users/author',$data);
   }
+
+  public function addwiki(){
+    $data = [
+      
+      'title' => 'Addwiki'
+  ];
+    $this->view('pages/users/addwiki',$data);
+  }
 }
