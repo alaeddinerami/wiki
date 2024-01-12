@@ -31,8 +31,8 @@
         </div>
 
         <!-- Add Article Button -->
-        <a href="<?= URLROOT ?>/UserController/addwiki" class="hidden md:block bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600  ">
-            Add Article
+        <a href="<?= URLROOT ?>/AuthteurController/addwiki" class="hidden md:block bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600  ">
+            Add Wiki
         </a>
         <a href="<?=URLROOT?>/AdminController/logout" class="hidden md:block bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600  ">
             Log out

@@ -7,7 +7,7 @@ require_once APPROOT . '/views/inc/header.php';
 
     <h2 class="text-3xl font-bold mb-6 text-center">Create a Wiki</h2>
 
-    <form action="" method="post">
+    <form action="<?= URLROOT?> /AuthteurController/InsertWikis" method="post">
 
         <!-- Name Input -->
         <div class="mb-6">
@@ -24,10 +24,11 @@ require_once APPROOT . '/views/inc/header.php';
         <!-- Category Select -->
         <div class="mb-6">
             <label for="category" class="block text-sm font-medium text-gray-600">Category</label>
-            <select id="category" name="category" class="mt-1 p-3 w-full border rounded-md">
-                <option value="category1">Category 1</option>
-                <option value="category2">Category 2</option>
-                <option value="category3">Category 3</option>
+            <select id="category" name="categorie" class="mt-1 p-3 w-full border rounded-md">
+                <?php
+                foreach($data['Categories'] as $cat){ ?>
+                <option value="<?= $cat->getIdCat() ?>"><?= $cat->getNameCat() ?></option>
+               <?php } ?>
             </select>
         </div>
 
@@ -35,24 +36,20 @@ require_once APPROOT . '/views/inc/header.php';
         <div class="mb-6">
             <label class="block text-sm font-medium text-gray-600">Tags</label>
             <div class="mt-2 space-y-2">
-                <label for="tag1" class="">
-                    <input type="checkbox" id="tag1" name="tags[]" value="tag1" class="mr-2">
-                    Tag 1
+            <?php
+            
+                foreach($data['Tags'] as $tag){ ?>
+                <label for="tag1" class="flex space-x-2">
+                    <input type="checkbox" id="tag1" name="tags[]" value="<?= $tag->getIdTag() ?>" class="mr-2">
+                    <?= $tag->getNameTag() ?>
                 </label>
-                <label for="tag2" class="">
-                    <input type="checkbox" id="tag2" name="tags[]" value="tag2" class="mr-2">
-                    Tag 2
-                </label>
-                <label for="tag3" class="">
-                    <input type="checkbox" id="tag3" name="tags[]" value="tag3" class="mr-2">
-                    Tag 3
-                </label>
+                <?php } ?>
             </div>
         </div>
 
         <!-- Submit Button -->
         <div class="text-center">
-            <button type="submit" class="bg-yellow-500 text-white px-6 py-3 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring focus:border-yellow-300">
+            <button type="submit" name="AddWiki" class="bg-yellow-500 text-white px-6 py-3 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring focus:border-yellow-300">
                 Submit
             </button>
         </div>

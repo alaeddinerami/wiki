@@ -1,15 +1,19 @@
 <?php
 require_once(APPROOT . '/models/Wiki.php');
+require_once(APPROOT . '/models/Categorie.php');
 
 class WikiDao
 {
     private $db;
     private Wiki $wiki;
+    private Categorie $categorie;
 
     public function __construct()
     {
         $this->db = new Database;
         $this->wiki = new Wiki();
+
+        $this->categorie = new Categorie();
     }
 
     public function getAllWikis()
@@ -60,6 +64,32 @@ class WikiDao
         } catch (Exception $e) {
             // Handle the exception
             error_log("Error in update: " . $e->getMessage());
+        }
+    }
+
+    public function InsertWikiDao(Wiki $wiki)
+    {
+        try {
+            $nameWiki = $wiki->getNameWiki();
+            $descriptionWiki = $wiki->getDescriptionWiki();
+            $currentDate = date('Y-m-d H:i:s');
+            $idUser = $_SESSION['userId'];
+
+            $idCat = $wiki->getCategorie()->getIdCat();
+            $req = "INSERT INTO wiki(nameWiki, descriptionWiki, DateCreate, idUser, idCat)  VALUES (:nameWiki, :descriptionWiki,  :dateCreated, :idUser, :idCat)";
+
+            $this->db->query($req);
+            $this->db->bind(':nameWiki', $nameWiki);
+            $this->db->bind(':descriptionWiki', $descriptionWiki);
+            $this->db->bind(':dateCreated', $currentDate);
+            $this->db->bind(':idUser', $idUser);
+            $this->db->bind(':idCat', $idCat);
+
+            $this->db->execute();
+            $wikiID = $this->db->lastInsertId();
+            return $wikiID;
+        } catch (Exception $e) {
+            error_log("Error in Insert wiki: " . $e->getMessage());
         }
     }
 
