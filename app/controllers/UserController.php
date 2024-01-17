@@ -4,10 +4,14 @@ class UserController extends Controller
 {
 
   private $Author;
+private $categorie;
+  private $wiki;
   private $user;
   public function __construct()
   {
     $this->Author = $this->model('AuthorDao');
+    $this->wiki = $this->model('WikiDao');
+    $this->categorie = $this->model('CategorieDao');
   }
 
 
@@ -105,17 +109,48 @@ class UserController extends Controller
     }
   }
 
-  public function search($table, $search)
-  {
-  }
+
+ public function wikimore(){
+  $data = [
+      
+    'title' => 'wiki',
+    
+    
+    'Wiki' => $this->wiki->getsinglWikisView()
+    
+   
+];
+  $this->view('pages/users/wikimore',$data);
+ }
+
 
   public function author()
   {
     $data = [
       
-      'title' => 'Author'
+      'title' => 'Author',
+      
+      'Categories' => $this->categorie->getAllCat(),
+      'Wiki' => $this->wiki->getAllWikisView()
+      
+     
   ];
+  
     $this->view('pages/users/author',$data);
+  }
+  public function navbar()
+  {
+    $data = [
+      
+      'title' => 'Author',
+      
+      'Categories' => $this->categorie->getAllCat()
+      // 'Wiki' => $this->wiki->getAllWikisView()
+      
+     
+  ];
+  
+    $this->view('pages/inc/navbar',$data);
   }
 
   public function addwiki(){
@@ -124,5 +159,20 @@ class UserController extends Controller
       'title' => 'Addwiki'
   ];
     $this->view('pages/users/addwiki',$data);
+  }
+
+  public function wikifilter(){
+    $data = [
+      
+      'title' => 'Categorie',
+      
+      'Categories' => $this->categorie->getAllCat(),
+      'Wiki' => $this->wiki->getAllWikisView(),
+      // 'Wikis' => $this->wiki->wikifilterDao()
+      
+     
+  ];
+  
+    $this->view('pages/users/wikifilter',$data);
   }
 }

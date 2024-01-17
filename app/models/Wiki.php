@@ -13,11 +13,16 @@ class Wiki
     private Categorie $categorie;
     private User $user;
 
+    private Tags $tags;
+
+
+
 
     public function __construct()
     {
         $this->user = new User();
         $this->categorie = new Categorie();
+        $this->tags = new Tags();
     }
 
     /**
@@ -110,14 +115,7 @@ class Wiki
         return $this->idCat;
     }
 
-    /**
-     * Get the value of user
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
+    
     /**
      * Get the value of DateCreate
      */
@@ -138,11 +136,65 @@ class Wiki
         return $this;
     }
 
+  
+
+    /**
+     * Get the value of tags
+     */ 
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Set the value of tags
+     *
+     * @return  self
+     */ 
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
     /**
      * Get the value of categorie
      */ 
     public function getCategorie()
     {
         return $this->categorie;
+    }
+
+    /**
+     * Set the value of categorie
+     *
+     * @return  self
+     */ 
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user
+     */ 
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set the value of user
+     *
+     * @return  self
+     */ 
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }

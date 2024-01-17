@@ -25,3 +25,31 @@ CREATE TABLE tags (
     idTag INT AUTO_INCREMENT PRIMARY KEY,
     nameTag VARCHAR(255)
 );
+ALTER TABLE Wiki
+ADD COLUMN dateUpdated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
+CREATE VIEW wikiView as
+
+SELECT
+    Wiki.*,
+    utilisateur.name,
+    categorie.nameCat,
+    GROUP_CONCAT(tags.nameTag ORDER BY tags.nameTag ASC SEPARATOR ', ') AS tag_names
+FROM
+    Wiki
+JOIN
+    utilisateur ON wiki.idUser = utilisateur.idUser
+JOIN
+    categorie ON wiki.idCat = categorie.idCat
+LEFT JOIN
+    wiki_tags ON Wiki.idWiki = wiki_tags.idWiki
+LEFT JOIN
+    tags ON wiki_tags.idTag = tags.idTag
+WHERE
+    Wiki.archived = 0
+GROUP BY
+    Wiki.idWiki
+ORDER BY
+    wiki.dateUpdated DESC;
+
+

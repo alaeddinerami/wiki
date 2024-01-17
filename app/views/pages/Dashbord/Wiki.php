@@ -1,24 +1,10 @@
-<?php 
- $nonavbar=''; 
+<?php
+$nonavbar = '';
 require_once APPROOT . '/views/inc/header.php' ?>
 
 <div>
 
-    <!-- Header -->
-
-    <!-- ./Header -->
-
     <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
-
-        <!-- Statistics Cards -->
-
-        <!-- ./Statistics Cards -->
-
-
-        
-
-
-        <!-- Client Table -->
         <div class="mt-4 mx-4">
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
                 <div class="w-full overflow-x-auto">
@@ -57,23 +43,23 @@ require_once APPROOT . '/views/inc/header.php' ?>
                                         </td>
                                         <td data-key="10" class="px-4 py-3" id="categoryCellt">
                                             <?php var_dump($wiki->getArchivedWiki());
-                                            
-                                             if ($wiki->getArchivedWiki() == 0) { ?>
-                                               <form action="<?= URLROOT ?> /AdminController/Archiver" method="post">
-                                                <button type="submit" name="archiver" value="<?= $wiki->getIdWiki() ?>" class="text-green-700 border border-green-700 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
-                                                    <svg class="w-13 h-7" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"></path>
-                                                    </svg>
-                                                </button>
-                                            </form>
+
+                                            if ($wiki->getArchivedWiki() == 0) { ?>
+                                                <form action="<?= URLROOT ?> /AdminController/Archiver" method="post">
+                                                    <button type="submit" name="archiver" value="<?= $wiki->getIdWiki() ?>" class="text-green-700 border border-green-700 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+                                                        <svg class="w-13 h-7" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"></path>
+                                                        </svg>
+                                                    </button>
+                                                </form>
                                             <?php } else { ?>
                                                 <form action="<?= URLROOT ?> /AdminController/NomArchiver" method="post">
-                                                <button type="submit" name="non_archiver" value="<?= $wiki->getIdWiki() ?>" class="text-red-700 border border-red-700 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
-                                                    <svg class="w-13 h-7" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m6 4.125 2.25 2.25m0 0 2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"></path>
-                                                    </svg>
-                                                </button>
-                                            </form>
+                                                    <button type="submit" name="non_archiver" value="<?= $wiki->getIdWiki() ?>" class="text-red-700 border border-red-700 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+                                                        <svg class="w-13 h-7" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m6 4.125 2.25 2.25m0 0 2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"></path>
+                                                        </svg>
+                                                    </button>
+                                                </form>
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -83,11 +69,11 @@ require_once APPROOT . '/views/inc/header.php' ?>
 
                                 ?>
 
-                                <!-- Add more rows as needed -->
+
                             </tbody>
                         </table>
 
-                        <!-- Modal for Edit Category -->
+
                         <div id="editModal" class="hidden fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50">
                             <div class="flex items-center justify-center h-full">
                                 <div class="bg-white p-8 rounded shadow-lg">
@@ -106,6 +92,6 @@ require_once APPROOT . '/views/inc/header.php' ?>
                 </div>
             </div>
         </div>
-        <!--  -->
+
 
         <?php require_once APPROOT . '/views/inc/footer.php' ?>

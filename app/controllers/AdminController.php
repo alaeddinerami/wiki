@@ -37,10 +37,10 @@ class AdminController extends Controller
     $this->view('pages/Dashbord/Dashbord', $data);
   }
   // -----------------------------------Dashbord
-  
+
   public function Dashbord()
   {
-    
+
     if ($_SESSION['Error'] == 'user not found') {
       redirect('UserController/LoginAuthor');
     }
@@ -155,7 +155,7 @@ class AdminController extends Controller
   {
     session_destroy();
     $_SESSION['Error'] = 'user not found';
-    redirect('UserController/LoginAuthor');
+    redirect('UserController/author');
   }
 
   //.............................tags........................
@@ -181,7 +181,7 @@ class AdminController extends Controller
       redirect('UserController/LoginAuthor');
     }
     if (isset($_POST['Tagsname'])) {
-      var_dump($_POST);
+      // var_dump($_POST);
 
 
       $tag_id = $_POST['TagsId'];

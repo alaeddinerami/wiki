@@ -38,40 +38,77 @@ function editCategory(e) {
   // document.querySelector('#idCat').value = idCat;
 }
 
-// function saveEdit() {
-//   const editedCategory = document.querySelector("#idCat").value;
-//   // Perform the update operation here using JavaScript or send it to the server
-//   // You can use editedCategoryId to identify the category
-
-//   // Close the modal
-//   // document.getElementById('editModal').classList.add('hidden');
-// }
-
 function closeEditModal() {
   document.getElementById("editModal").classList.add("hidden");
 }
 
-// function deleteCategory() {
-//    // Perform the delete operation here using JavaScript or send it to the server
-// }
+document
+  .getElementById("mobile-menu-button")
+  .addEventListener("click", function () {
+    document.getElementById("mobile-menu").classList.toggle("hidden");
+  });
 
-// function showWarning() {
-//    // Display a warning message (replace alert with a more sophisticated solution)
-//    alert("Editing categories is not allowed in this demo!");
-// }
-// function clickme(e) {
-//   console.log(e);
-//   const tr = e.target;
+function showeditModal(id) {
+  localStorage.setItem("id", id);
+}
 
-//   const categoryCell = tr.querySelector("#categoryCell");
-//   const editedCategory = document.getElementById("editedCategory");
+document.addEventListener('DOMContentLoaded', () => {
+        const submit = document.querySelector('#submit');
 
-//   editedCategory.value = categoryCell.innerText;
-//   let EditValue = e.target.value;
+        submit.addEventListener('click', (event) => {
+            // Prevent default form submission
 
-//   document.querySelector("#idCat").value = EditValue;
-//   document.getElementById("editModal").classList.remove("hidden");
-// }
-// document.getElementById('mobile-menu-button').addEventListener('click', function() {
-//   document.getElementById('mobile-menu').classList.toggle('hidden');
-// });
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('name').value;
+            const password = document.getElementById('password').value;
+            const verifyPassword = document.getElementById('confirm-password').value;
+
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+
+            let isValid = true;
+
+            if (username.length === 0) {
+                isValid = false;
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "Please enter your username",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            } else if (!emailRegex.test(email)) {
+                isValid = false;
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "Please enter a valid email address",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            } else if (!passwordRegex.test(password)) {
+                isValid = false;
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "Password must be between 6 to 20 characters and contain at least one numeric digit, one uppercase and one lowercase letter",
+                    showConfirmButton: false,
+                    timer: 5000
+                });
+            } else if (password !== verifyPassword) {
+                isValid = false;
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "Passwords do not match",
+                    showConfirmButton: false,
+                    timer: 5000
+                });
+            }
+
+            if (!isValid) {
+
+                event.preventDefault();
+            }
+        });
+    });
